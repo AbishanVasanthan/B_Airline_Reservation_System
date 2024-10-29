@@ -1,0 +1,76 @@
+.homepage {
+  position: relative; /* Enable absolute positioning for child elements */
+  overflow: hidden; /* Hide any overflow from child elements */
+  padding-bottom: 100px; /* Adjust padding to prevent overlap with footer */
+}
+
+.homepage::before {
+  content: ''; /* Necessary for the pseudo-element */
+  position: absolute; /* Position it relative to the parent */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/1.jpg'); /* Replace with your image path */
+  background-size: cover; /* Ensure the image covers the entire area */
+  background-position: center; /* Center the image */
+  opacity: 0.5; /* Adjust the opacity for a fading effect */
+  z-index: 0; /* Send it behind other content */
+  transition: opacity 1s ease-in-out; /* Optional: adds a fade effect on load */
+}
+
+.flights-report-section {
+  position: relative; /* Ensures content is above the background */
+  z-index: 1; /* Bring this section above the background image */
+  margin: 20px; /* Optional margin */
+  padding: 20px; /* Add some padding for spacing */
+  background-color: rgba(255, 255, 255, 0.8); /* White background with opacity for readability */
+  border-radius: 8px; /* Rounded corners for the report section */
+}
+
+.flights-report-table {
+  width: 100%; /* Ensure the table uses the full width */
+  border-collapse: collapse; /* Avoid double borders */
+  margin-bottom: 20px; /* Space below the table */
+}
+
+.flights-report-table th,
+.flights-report-table td {
+  border: 1px solid #ccc; /* Add border for visibility */
+  padding: 8px; /* Add padding */
+  text-align: left; /* Align text */
+}
+
+/* Header styles */
+.flights-report-table th {
+  background-color: #4CAF50; /* Green background for headers */
+  color: white; /* White text color for headers */
+}
+
+/* Alternating row colors */
+.flights-report-table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray for even rows */
+}
+
+.flights-report-table tr:nth-child(odd) {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+/* Hover effect */
+.flights-report-table tr:hover {
+  background-color: #e0f7fa; /* Light cyan background on hover */
+}
+
+/* Optional: active row styles */
+.flights-report-table tr:active {
+  background-color: #b2ebf2; /* Slightly darker cyan when clicked */
+}
+
+.footer {
+  position: relative; /* Ensure footer is above the background */
+  z-index: 1; /* Bring the footer above the background */
+  padding: 20px;
+  text-align: center;
+  background-color: #333; /* Dark background for footer */
+  color: white; /* White text color for footer */
+}
