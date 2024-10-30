@@ -32,9 +32,9 @@ function App() {
         if (token) {
             const decoded = jwtDecode(token);
             setIsAuthenticated(true);
-            setUserRole(decoded.role);  // Set the user's role based on the decoded token
+            setUserRole(role);  // Set the user's role based on the decoded token
             localStorage.setItem('token', token);  // Store token for future use
-            localStorage.setItem('role', decoded.role);  // Store role in localStorage
+            localStorage.setItem('role', role);  // Store role in localStorage
         }
     };
 
@@ -49,10 +49,11 @@ function App() {
     useEffect(() => {
         const token = localStorage.getItem('token');
         const role = localStorage.getItem('role');  // Get role from localStorage
-
+        console.log("role in app: ",role)
         if (token && role) {
+            console.log("inside token")
             try {
-                const decoded = jwtDecode(token);
+                // const decoded = jwtDecode(token);
                 setIsAuthenticated(true);
                 setUserRole(role);  // Set user role from local storage
             } catch (error) {
@@ -60,8 +61,8 @@ function App() {
                 // localStorage.removeItem('token');  // Remove invalid token
                 // localStorage.removeItem('role');   // Also remove invalid role
             }
-        }
-    }, []);
+        }console.log("userRole: ",userRole)
+    }, [userRole]);
 
     return (
         <AuthProvider>
@@ -72,7 +73,7 @@ function App() {
                         <Routes>
                             <Route path="/" element={<HomePage />} />
                             <Route path="/offers" element={<Offers />} />
-                            <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
+                            {/* <Route path="/login" element={<LoginForm onLogin={handleLogin} />} /> */}
                             <Route path="/sign-up" element={<SignUpForm />} />
                             <Route path="/contact" element={<ContactPage />} />
                             <Route path="/about" element={<About />} />
@@ -82,12 +83,12 @@ function App() {
                             <Route path="/customer/viewflights" element={<BookingPage />} />
                             <Route path="/flights" element={<BookAndSearchFlight />} />
                             <Route path="/submit-details" element={<SubmitPage />} />
-                            <Route path="/dashboard" element={<Dashboard />} />
+                            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
                             <Route path="/logout" element={<Logout />} />
-                            <Route path="/user-details" element={<UserDetails />} />
+                            {/* <Route path="/user-details" element={<UserDetails />} /> */}
                             <Route path="/bookings" element={<UserBookings />} /> {/* Bookings route */}
-                            <Route path="/Report" element={<Report />} />
-                            <Route path="/adminpage" element={<AdminHomePage />} />
+                            {/* <Route path="/Report" element={<Report />} />
+                            <Route path="/adminpage" element={<AdminHomePage />} /> */}
 
                             {/* Conditionally render admin-only routes */}
                             {isAuthenticated && userRole === 'admin' && (
@@ -102,7 +103,13 @@ function App() {
                                 <>
                                     <Route path="/dashboard" element={<Dashboard />} />
                                     <Route path="/user-details" element={<UserDetails />} />
-                                    <Route path="/bookings" element={<UserBookings />} />
+                                    {/* <Route path="/bookings" element={<UserBookings />} /> */}
+                                </>
+                            )}
+
+                            {!isAuthenticated && !(userRole === 'passenger') && !(userRole === 'admin') && (
+                                <>
+                                    <Route path="/login" element={<LoginForm onLogin={handleLogin} />} />
                                 </>
                             )}
 

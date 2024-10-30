@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
         const role = localStorage.getItem('role');
         setIsLoggedIn(loggedInStatus);
         setUserRole(role);
-    }, []);
+    }, [isLoggedIn, userRole]);
     
     
 

@@ -9,7 +9,7 @@ const LoginForm = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loginRole, setLoginRole] = useState('passenger'); // Default to 'user'
-    const navigate = useNavigate();
+
 
     const handleRoleChange = (role) => {
         setLoginRole(role);
@@ -40,6 +40,7 @@ const LoginForm = () => {
                 setUserRole(data.user.role);
 
                 console.log("User logged in with role: ", data.user.role);
+                window.location.reload();
                 navigate('/dashboard'); // Navigate to user dashboard
             } else {
                 const message = await response.text();
@@ -76,6 +77,7 @@ const LoginForm = () => {
                     setUserRole(data.data.role); // Ensure 'data.data.role' is accessed
     
                     console.log("Admin logged in with role:", data.data.role);
+                    window.location.reload();
                     navigate('/adminpage'); // Navigate to admin homepage
                 } else {
                     throw new Error("Token or user data is missing from the response");
@@ -105,6 +107,20 @@ const LoginForm = () => {
         navigate('/signup');
     };
 
+    // useEffect(() => {
+    //     console.log("naan illa")
+    //     if (isLoggedIn) {
+    //         console.log("hi",userRole)
+    //         if (userRole === 'admin') {
+    //             navigate('/adminpage');
+    //         } else {
+    //             navigate('/dashboard');
+    //         }
+    //     }
+    //     else{
+    //         navigate('/login');
+    //     }
+    // }, [isLoggedIn, userRole, navigate]); 
 
     return (
         <div className="logo">

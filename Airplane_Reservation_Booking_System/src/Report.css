@@ -1,3 +1,19 @@
+.body {
+  background-image: url('/1.jpg'); 
+  background-size: cover; 
+  background-position: center;
+  background-blend-mode: multiply;
+} 
+
+.background-wrapper {
+  background-color: white; /* White background that covers everything */
+  min-height: 100vh; /* Extends to the full viewport height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
 .report-container {
   max-width: 600px;
   margin: 50px auto;
@@ -5,7 +21,10 @@
   background-color: #f7f7f7;
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  /* background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+              url('/3.jpg') center/cover; */
 }
+
 
 .report-title {
   text-align: center;

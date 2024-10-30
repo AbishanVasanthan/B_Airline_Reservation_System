@@ -24,6 +24,7 @@ const Logout = () => {
 
         // Redirect to login page
         navigate('/login');
+        window.location.reload();
     }, [navigate]);
 
     return <div>Logging out...</div>;
